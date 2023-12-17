@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
-
+#include <time.h>
 
 class Node{
     public:
@@ -63,7 +63,15 @@ class Node{
     }
 
     Node* insert_root(int key, int val){
-        if (!this || isVirtual) return new Node(key,val);
+        if (!this || isVirtual){
+            if (!this)
+                return new Node(key, val);
+            if (isVirtual){
+                Node* n = new Node(key, val);
+                n->right = right;
+                return n;
+            }
+        }
         if (key<k){
             left = left->insert_root(key, val);
             return rotate_right();
@@ -140,7 +148,7 @@ class Tree{
         root = new Node(key, val);
     }
     void insert(int key, int val){
-        root->insert(key, val);
+        root = root->insert(key, val);
     }
 
 
@@ -345,10 +353,10 @@ class Tree{
         iterator_post rbegin(){return iterator_post(root);}
         iterator_post rend(){return iterator_post(nullptr);}
         bool find(int key){
-            root->find(key);
+            return root->find(key);
         }
         int value(int key){
-            root->value(key);
+            return root->value(key);
         }
         Tree union_(Tree B){
             auto it_ = begin();
@@ -383,6 +391,7 @@ class Tree{
 
     int main(int argc, char const *argv[])
     {
+        srand(time(0));
         Tree A = Tree(101, 101);
         int l[10] = {9,7,15,3,1,4,21,103,17 ,12};
         for (auto i : l){
