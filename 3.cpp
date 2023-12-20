@@ -398,13 +398,20 @@ class Tree{
         Tree A = Tree(rand(), rand());
         int n1 = rand()%12;
         int n2 = rand()%12;
-
+        std::cout << "\nElements in tree A: ";
         for (int i = 0; i < n1; i++){
-            A.insert(rand(), rand());
+            int k = rand();
+            int v = rand();
+            std::cout << k << " ";
+            A.insert(k, v);
         }
         Tree B = Tree(rand(), rand());
+        std::cout << "\nElements in tree B: ";
         for (int i = 0; i < n2; i++){
-            B.insert(rand(), rand());
+            int k = rand();
+            int v = rand();
+            std::cout << k << " ";
+            B.insert(k, v);
         }
 
         std::cout << "\nPreorder Tree A with " << A.elements << " elements \n";
