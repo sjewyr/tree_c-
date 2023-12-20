@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stack>
-#include <vector>
 #include <time.h>
 
 class Node{
@@ -144,11 +143,14 @@ class Node{
 class Tree{
     public:
     Node* root;
+    int elements; 
     Tree(int key, int val){
         root = new Node(key, val);
+        elements = 1;
     }
     void insert(int key, int val){
         root = root->insert(key, val);
+        elements++;
     }
 
 
@@ -383,6 +385,7 @@ class Tree{
                 }
             
             }
+            C.root->fix_size();
             return C;
         }
     };
@@ -392,30 +395,31 @@ class Tree{
     int main(int argc, char const *argv[])
     {
         srand(time(0));
-        Tree A = Tree(101, 101);
-        int l[10] = {9,7,15,3,1,4,21,103,17 ,12};
-        for (auto i : l){
-            int v = rand();
-            A.insert(i,i );
+        Tree A = Tree(rand(), rand());
+        int n1 = rand()%12;
+        int n2 = rand()%12;
+
+        for (int i = 0; i < n1; i++){
+            A.insert(rand(), rand());
         }
-        Tree B = Tree(10, 10);
-        for (int i = 21; i < 31; i++){
-            B.insert(i, i);
+        Tree B = Tree(rand(), rand());
+        for (int i = 0; i < n2; i++){
+            B.insert(rand(), rand());
         }
 
-        std::cout << "\nPreorder\n";
+        std::cout << "\nPreorder Tree A with " << A.elements << " elements \n";
         for (auto key : A){
                 std::cout << key<< " ";
         }
-        std::cout << "\nPostorder\n";
+        std::cout << "\nPostorder Tree B with " << B.elements << " elements \n";
         for (auto it = B.cbegin(); it != B.cend(); ++it){
             int val = *it;
             std::cout << val << " ";
         }
         std::cout << "\n";
-        std::cout << "\nUnion testing\n";
-        Tree C = A.union_(B);
-        for (auto key : C){
+        A = A.union_(B);
+        std::cout << "\nUnion testing Tree A with " << A.elements << " elements \n";
+        for (auto key : A){
             std::cout << key << " ";
         }
         return 0;
