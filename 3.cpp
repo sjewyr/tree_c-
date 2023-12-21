@@ -425,8 +425,9 @@ class Tree{
         }
         std::cout << "\n";
         A = A.union_(B);
-        std::cout << "\nUnion testing Tree A with " << A.elements << " elements \n";
-        for (auto key : A){
+        std::cout << "\nUnion testing Tree A (postorder) with " << A.elements << " elements \n";
+        for (auto it = A.rbegin(); it != A.rend(); ++it){
+            int key = *it;
             std::cout << key << " ";
         }
         return 0;
