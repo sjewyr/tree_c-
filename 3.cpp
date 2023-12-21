@@ -419,7 +419,7 @@ class Tree{
                 int key = *it;
                 std::cout << key<< " ";
         }
-        std::cout << "\n Inorder Tree B with " << B.elements << " elements \n";
+        std::cout << "\nInorder Tree B with " << B.elements << " elements \n";
         for (auto key : B){
             std::cout << key << " ";
         }
