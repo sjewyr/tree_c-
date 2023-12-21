@@ -415,13 +415,13 @@ class Tree{
         }
 
         std::cout << "\nPreorder Tree A with " << A.elements << " elements \n";
-        for (auto key : A){
+        for (auto it = A.cbegin(); it != A.cend(); ++it){
+                int key = *it;
                 std::cout << key<< " ";
         }
-        std::cout << "\nPostorder Tree B with " << B.elements << " elements \n";
-        for (auto it = B.cbegin(); it != B.cend(); ++it){
-            int val = *it;
-            std::cout << val << " ";
+        std::cout << "\n Inorder Tree B with " << B.elements << " elements \n";
+        for (auto key : B){
+            std::cout << key << " ";
         }
         std::cout << "\n";
         A = A.union_(B);
