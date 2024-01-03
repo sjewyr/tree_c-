@@ -101,16 +101,16 @@ class Node{
         return this;
     }
     void recInOrder(){
-        if (this && left!=0 && left->size != 0) left->recInOrder();
-        if (size!=0) std::cout << k << " " << v << "\n";
-        if (left!=0 && left->right!=0) left->right->recInOrder();
+         if (this && left!=0) left->recInOrder();
+         std::cout << k << " " << v << "\n";
+         if (left!=0 && left->right!=0) left->right->recInOrder();
     }
 
-    void recRevOrder(){
-        if (left!=0 && left->right!=0) left->right->recRevOrder();
-        if (size!=0) std::cout << k << " " << v << "\n";
-        if (this && left!=0 && left->size != 0) left->recRevOrder();
-    }  
+    // void recRevOrder(){
+    //     if (left!=0 && left->right!=0) left->right->recRevOrder();
+    //     if (size!=0) std::cout << k << " " << v << "\n";
+    //     if (this && left!=0 && left->size != 0) left->recRevOrder();
+    // }  
 
     bool find(int key){
         if (key > k && left->right){
@@ -195,7 +195,7 @@ class Tree{
                         stack.pop();
                     }
                 }
-                if (current->isVirtual) return ++(*this);
+                // if (current->isVirtual) return ++(*this);
                 return *this;
             }
 
@@ -342,8 +342,6 @@ class Tree{
                         }
                    }
                 }
-                if (current->isVirtual) return ++(*this);
-                return *this;
             }
             
 
@@ -395,18 +393,23 @@ class Tree{
     int main(int argc, char const *argv[])
     {
         srand(time(0));
-        Tree A = Tree(rand(), rand());
+        int k = rand();
+        int v = rand();
+        Tree A = Tree(k, v);
         int n1 = rand()%12;
         int n2 = rand()%12;
-        std::cout << "\nElements in tree A: ";
+        std::cout << "\nElements in tree A: " << k << " ";
         for (int i = 0; i < n1; i++){
-            int k = rand();
-            int v = rand();
+            k = rand();
+            v = rand();
             std::cout << k << " ";
             A.insert(k, v);
         }
-        Tree B = Tree(rand(), rand());
-        std::cout << "\nElements in tree B: ";
+        std::cout<<"\n";
+        k = rand();
+        v = rand();
+        Tree B = Tree(k, v);
+        std::cout << "\nElements in tree B: " << k << " ";
         for (int i = 0; i < n2; i++){
             int k = rand();
             int v = rand();
